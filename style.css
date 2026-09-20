@@ -87,3 +87,6 @@
 .home-mementos figcaption{margin-top:9px;text-align:center;font:italic .9rem/1.3 Georgia,serif;color:var(--muted)}
 @media(max-width:800px){.home-note{grid-template-columns:minmax(0,1fr) 255px;column-gap:22px}.home-mementos img{height:146px}}
 @media(max-width:600px){.home-note{grid-template-columns:1fr}.home-mementos{max-width:280px}.home-mementos img{height:158px}}
+
+/* Keep the headroom in the owner-selected Scholar portrait. */
+.portrait{object-position:50% 8%}
