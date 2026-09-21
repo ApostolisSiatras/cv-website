@@ -1,0 +1,93 @@
+/* Doodles perform on little stages directly above the headings. */
+.code-drift{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden}
+.with-companion .wrap{position:relative;z-index:2}
+.doodle-heading{position:relative;min-width:0}
+.heading-doodle-stage{position:absolute;left:0;bottom:100%;width:min(100%,520px);height:120px;overflow:hidden;isolation:isolate;pointer-events:none;z-index:3;--facing:1}
+.music-recognition .doodle-heading,.article .doodle-heading{padding-top:90px}
+.music-recognition .heading-doodle-stage,.article .heading-doodle-stage{bottom:calc(100% - 90px);height:120px}
+.doodle-button{position:absolute;display:block;width:var(--doodle-size,100px);height:var(--doodle-size,100px);padding:0;border:0;background:none;color:var(--ink);cursor:pointer;pointer-events:auto;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transform-origin:50% 85%;will-change:transform}
+.doodle-button:focus-visible{outline:2px dashed var(--rust);outline-offset:-3px;border-radius:10px}
+.doodle-facing{position:absolute;inset:0;transform:scaleX(var(--facing));pointer-events:none}
+.doodle-sprite{display:block;position:absolute;inset:0;background:url('assets/companion/doodle-poses.png') 0 0 / 300% 200% no-repeat;pointer-events:none;animation:doodle-alive 3.4s ease-in-out infinite;transform-origin:50% 85%}
+.heading-doodle-stage[data-pose='book'] .doodle-sprite{background-position:0 0}
+.heading-doodle-stage[data-pose='laptop'] .doodle-sprite{background-position:50% 0}
+.heading-doodle-stage[data-pose='oboe'] .doodle-sprite{background-position:100% 0;animation-name:doodle-music}
+.heading-doodle-stage[data-pose='highfive'] .doodle-sprite{background-position:0 100%;animation:doodle-highfive 2s ease-in-out infinite}
+.heading-doodle-stage[data-pose='peek'] .doodle-sprite{background-position:100% 100%;animation:doodle-peek 1.4s ease-in-out infinite}
+.doodle-parkour{display:none;position:absolute;left:12.5%;top:0;width:75%;height:100%;background:url('assets/companion/parkour-poses.png') 0 0 / 400% 200% no-repeat}
+.heading-doodle-stage:is([data-pose='run'],[data-pose='jump'],[data-pose='tuck'],[data-pose='land']) .doodle-sprite{display:none}
+.heading-doodle-stage:is([data-pose='run'],[data-pose='jump'],[data-pose='tuck'],[data-pose='land']) .doodle-parkour{display:block}
+.heading-doodle-stage[data-pose='run'] .doodle-parkour{animation:doodle-stride .4s steps(1,end) infinite}
+.heading-doodle-stage[data-pose='jump'] .doodle-parkour{background-position:33.33333% 100%}
+.heading-doodle-stage[data-pose='tuck'] .doodle-parkour{background-position:66.66667% 100%}
+.heading-doodle-stage[data-pose='land'] .doodle-parkour{background-position:100% 100%}
+.heading-doodle-stage[data-state='offscreen'] *{animation-play-state:paused!important}
+@keyframes doodle-stride{0%,100%{background-position:0 0;transform:translateX(-3px)}25%{background-position:33.33333% 0;transform:translateX(0)}50%{background-position:66.66667% 0;transform:translateX(0)}75%{background-position:100% 0;transform:translateX(0)}}
+.motion-toggle{position:fixed;left:max(12px,env(safe-area-inset-left));bottom:max(18px,env(safe-area-inset-bottom));z-index:50;display:flex;align-items:center;gap:8px;min-height:44px;padding:10px 13px;border:1px solid #d4cfbf;border-radius:24px;background:#f8f4eaf2;color:var(--ink);font:400 .875rem/1.25 var(--sans);box-shadow:0 3px 12px #24362e08;cursor:pointer;touch-action:manipulation}
+.motion-toggle .motion-symbol{font-size:1rem;line-height:1;width:14px;text-align:center}
+.motion-toggle:disabled{cursor:default;color:var(--muted)}
+.with-companion .site-footer{padding-bottom:80px}
+.motion-paused .heading-doodle-stage,.motion-paused .code-drift,.motion-paused .homecoming{display:none!important}
+.with-companion .home-note-copy>p:not(.eyebrow){max-width:570px;font-size:1rem;line-height:1.8;color:var(--muted);margin:0}
+.homecoming{display:block;position:relative;width:100%;max-width:520px;margin:16px 0 0;padding:0;border:0;background:none;color:var(--ink);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;text-align:left}
+.homecoming[hidden]{display:none}
+.homecoming:focus-visible{outline:2px dashed var(--rust);outline-offset:5px;border-radius:10px}
+.home-stage{position:relative;display:block;aspect-ratio:5/2;overflow:hidden;isolation:isolate}
+.home-stage img{position:absolute;left:0;top:-35%;width:100%;height:auto;pointer-events:none}
+.home-house-art{clip-path:polygon(59.2% 0,100% 0,100% 100%,61.9% 100%,61.9% 47%,59.2% 47%);z-index:3}
+.home-family-art{clip-path:polygon(0 0,59.2% 0,59.2% 47%,61.9% 47%,61.9% 100%,0 100%);z-index:3;transform-origin:50% 72%}
+.home-journey{position:absolute;inset:0;clip-path:inset(0 32.6% 0 0);z-index:1}
+.home-boy{position:absolute;width:22%;aspect-ratio:1;left:0;bottom:8%;z-index:2;opacity:0;transform-origin:50% 86%}
+.home-boy .doodle-parkour{display:block;animation:doodle-stride .65s steps(1,end) infinite}
+.homecoming[data-phase='meeting'] .home-boy .doodle-parkour{animation-play-state:paused}
+.home-window-boy{position:absolute;left:81.5%;top:40%;width:11%;aspect-ratio:1;z-index:4;opacity:0}
+.home-window-boy .doodle-sprite{background-position:100% 100%;animation:doodle-peek 1.5s ease-in-out infinite}
+.home-replay{display:block;margin-top:2px;color:var(--muted);font:italic .875rem/1.4 var(--serif)}
+.home-replay>span{display:inline-block;margin-left:5px;color:var(--rust);font-style:normal}
+.homecoming.is-playing .home-boy{animation:doodle-homecoming 12s linear both}
+.homecoming.is-playing .home-window-boy{animation:doodle-at-home 12s linear both}
+.homecoming.is-playing .home-family-art{animation:doodle-family-home 12s linear both}
+.homecoming:not(.is-visible) *{animation-play-state:paused!important}
+@keyframes doodle-family-home{0%,47%{transform:translateX(0);opacity:1}92%,100%{transform:translateX(42%);opacity:1}}
+@keyframes doodle-homecoming{0%{left:-20%;opacity:1;transform:none}35%,47%{left:24%;opacity:1;transform:none}92%,100%{left:77%;opacity:1;transform:none}}
+@keyframes doodle-at-home{0%,94%{opacity:0;transform:translateY(7px)}100%{opacity:1;transform:translateY(0)}}
+.home-smoke{position:absolute;left:81.6%;top:9%;z-index:4;opacity:0;transition:opacity .8s}
+.home-smoke>span{position:absolute;left:0;bottom:0;color:var(--muted);font:400 1.3rem/1 var(--serif);opacity:0;animation:doodle-smoke 3.2s ease-out infinite;animation-play-state:paused}
+.home-smoke>span:nth-child(2){animation-delay:1.05s}.home-smoke>span:nth-child(3){animation-delay:2.1s}
+.homecoming[data-phase='inside'] .home-smoke{opacity:1}
+.homecoming[data-phase='inside'].is-visible .home-smoke>span{animation-play-state:running}
+@keyframes doodle-smoke{0%{transform:translate(0,4px) rotate(-90deg) scale(.7);opacity:0}25%{opacity:.5}100%{transform:translate(8px,-27px) rotate(-110deg) scale(1.2);opacity:0}}
+@keyframes doodle-alive{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-5px) rotate(2deg)}}
+@keyframes doodle-music{0%,100%{transform:rotate(-4deg)}50%{transform:translateY(-3px) rotate(4deg)}}
+@keyframes doodle-highfive{0%,65%,100%{transform:translateY(0) scale(1)}20%{transform:translateY(-6px) scale(1.05)}35%{transform:translateY(-2px) scale(.99)}48%{transform:translateY(-5px) scale(1.03)}}
+@keyframes doodle-run-steps{from{transform:translateY(-3px) rotate(-4deg)}to{transform:translateY(2px) rotate(4deg)}}
+@keyframes doodle-scroll{from{transform:translateY(0) rotate(-3deg)}to{transform:translateY(-6px) rotate(3deg)}}
+@keyframes doodle-peek{0%,100%{transform:rotate(-5deg)}50%{transform:translateY(-3px) rotate(5deg)}}
+@media(prefers-reduced-motion:reduce){.heading-doodle-stage,.code-drift,.homecoming{display:none!important}.music-recognition .doodle-heading,.article .doodle-heading{padding-top:0}}
+@media print{.heading-doodle-stage,.code-drift,.motion-toggle,.homecoming{display:none!important}.music-recognition .doodle-heading,.article .doodle-heading{padding-top:0}}
+
+/* A question and an idea become small stories above their own headings. */
+.doodle-concept,.doodle-bulb{display:none;position:absolute;inset:0;background:url('assets/companion/question-idea-poses.png') 0 0 / 200% 200% no-repeat;pointer-events:none}
+.doodle-question-mark{display:none;position:absolute;left:61%;top:-12%;font:italic 400 3rem/1 var(--serif);color:var(--rust);transform-origin:50% 90%;animation:doodle-question 3.2s ease-in-out infinite}
+.heading-doodle-stage[data-pose='question'] .doodle-question-mark,.heading-doodle-stage:is([data-pose='question'],[data-pose='idea-reach'],[data-pose='idea-place']) .doodle-concept{display:block}
+.heading-doodle-stage:is([data-pose='question'],[data-pose='idea-reach'],[data-pose='idea-place']) .doodle-sprite{display:none}
+.heading-doodle-stage[data-pose='question'] .doodle-concept{background-position:0 0;animation:doodle-alive 3.4s ease-in-out infinite}
+.heading-doodle-stage[data-pose='idea-reach'] .doodle-concept{background-position:100% 0}
+.heading-doodle-stage[data-pose='idea-place'] .doodle-concept{background-position:0 100%;transform:translate(-3.35%,4.15%)}
+.heading-doodle-stage[data-context='idea'][data-state='idle'] .doodle-bulb{display:block;inset:auto;left:48%;top:-27%;width:60%;height:60%;background-position:100% 100%;opacity:1;transform:translateY(0);filter:drop-shadow(0 0 5px #e2ab4b);transition:top .85s cubic-bezier(.25,.65,.3,1),left .85s ease,opacity .5s,transform .85s ease,filter .8s}
+.heading-doodle-stage[data-idea-phase='catch'][data-state='idle'] .doodle-bulb{left:48%;top:3%;filter:drop-shadow(0 0 8px #dfaf47)}
+.heading-doodle-stage[data-idea-phase='use'][data-state='idle'] .doodle-bulb{left:35%;top:20%;transform:scale(.55);opacity:.3;filter:drop-shadow(0 0 12px #dfaf47)}
+.heading-doodle-stage[data-idea-phase='working'][data-state='idle'] .doodle-bulb{left:35%;top:30%;transform:scale(.2);opacity:0;filter:none}
+@keyframes doodle-question{0%,100%{transform:rotate(-8deg) translateY(0)}45%{transform:rotate(7deg) translateY(-5px)}65%{transform:rotate(-3deg) translateY(-2px)}}
+
+.heading-doodle-stage[data-entrance='stroll'][data-state='entering'] .doodle-parkour{animation-duration:.65s}
+.heading-doodle-stage[data-context='book'][data-state='idle'] .doodle-sprite{animation:doodle-reading 7s ease-in-out infinite}
+.heading-doodle-stage[data-context='laptop'][data-state='idle'] .doodle-sprite{animation:doodle-typing 3.8s ease-in-out infinite}
+.doodle-notes{display:none;position:absolute;left:73%;top:3%;color:var(--rust);font:400 1.2rem/1 var(--serif)}
+.heading-doodle-stage[data-context='oboe'][data-state='idle'] .doodle-notes{display:block}
+.doodle-notes>span{position:absolute;opacity:0;animation:doodle-note 4s ease-out infinite}
+.doodle-notes>span+span{left:9px;animation-delay:2s}
+@keyframes doodle-note{0%{opacity:0;transform:translate(0,15px) rotate(-8deg)}20%{opacity:.65}100%{opacity:0;transform:translate(16px,-16px) rotate(12deg)}}
+@keyframes doodle-reading{0%,20%,100%{transform:rotate(0)}35%,52%{transform:rotate(3deg) translateY(2px)}70%,80%{transform:rotate(-2deg)}}
+@keyframes doodle-typing{0%,35%,70%,100%{transform:rotate(0)}15%,50%{transform:rotate(1deg) translateY(1px)}85%{transform:rotate(-2deg)}}
+@keyframes doodle-highfive{0%,60%,100%{transform:rotate(0) scale(1)}20%{transform:rotate(-1deg) scale(1.02)}32%{transform:rotate(1deg) scale(.99)}44%{transform:rotate(0) scale(1.01)}}
